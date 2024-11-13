@@ -1,0 +1,11 @@
+{% extends 'menu.html' %}
+
+{% block content %}
+<h1>Игры</h1>
+    <ul>
+        {% for game in games %}
+            <li>{{ game }}<button>Купить</button></li>
+        {% endfor %}
+    </ul>
+<button onclick="location.href='{% url 'platform' %}'">Вернуться обратно</button>
+{% endblock %}
