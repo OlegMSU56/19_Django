@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import UserRegister
+from .models import Buyer, Game
 
 # Create your views here.
 
@@ -12,8 +13,14 @@ def platform(request):
     return render(request, 'platform.html', context)
 
 def games(request):
-    games = ['Atomic Heart', 'Cyberpunk 2077', 'GTA']
-    return render(request, 'games.html', {'games': games})
+    title = 'Магазин'
+    page = 'Игры'
+    context = {
+        'title': title,
+        'page': page,
+        'games': Game.objects.all()
+    }
+    return render(request, 'games.html', context)
 
 def cart(request):
     title = 'Корзина'
@@ -40,7 +47,7 @@ def sign_up_by_html(request):
         elif username in users:
             info['error'] = 'Пользователь уже существует'
         else:
-            users.append(username)
+            Buyer.objects.create(name=username, balance=0.00, age=age)
             info['message'] = f'Приветствуем, {username}!'
     return render(request, 'registration_page.html', info)
 
@@ -53,6 +60,7 @@ def django_sign_up(request):
             password = form.cleaned_data['password']
             repeat_password = form.cleaned_data['repeat_password']
             age = form.cleaned_data['age']
+            users = Buyer.objects.values_list('name', flat=True)
             if password != repeat_password:
                 info['error'] = 'Пароли не совпадают'
             elif int(age) < 18:
@@ -60,7 +68,7 @@ def django_sign_up(request):
             elif username in users:
                 info['error'] = 'Пользователь уже существует'
             else:
-                users.append(username)
+                Buyer.objects.create(name=username, balance=0.00, age=age)
                 info['message'] = f'Приветствуем, {username}!'
     else:
         form = UserRegister()

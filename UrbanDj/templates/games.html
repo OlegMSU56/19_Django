@@ -1,11 +1,17 @@
 {% extends 'menu.html' %}
 
+{% block title %}
+    {{ block.super }}
+{% endblock %}
+
+{% block pagename %}
+    {{ block.super }}
+{% endblock %}
+
+{% block menu %}
+    {{ block.super }}
+{% endblock %}
+
 {% block content %}
-<h1>Игры</h1>
-    <ul>
-        {% for game in games %}
-            <li>{{ game }}<button>Купить</button></li>
-        {% endfor %}
-    </ul>
-<button onclick="location.href='{% url 'platform' %}'">Вернуться обратно</button>
+    {{ block.super }}
 {% endblock %}
