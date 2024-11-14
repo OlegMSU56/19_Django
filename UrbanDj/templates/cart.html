@@ -1,6 +1,7 @@
 {% extends 'menu.html' %}
 
 {% block title %}
+<h1>Корзина</h1>
     {{ block.super }}
 {% endblock %}
 
@@ -13,5 +14,6 @@
 {% endblock %}
 
 {% block content %}
-    <p><a> Вы еще не купили ни одной игры, так как ваши кнопки "КУПИТЬ" не работают! </a></p>
+    <p><a> Ваша корзина пуста </a></p>
+    <button onclick="location.href='{% url 'platform' %}'">Вернуться обратно</button>
 {% endblock %}
