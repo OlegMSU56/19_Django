@@ -16,20 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-#from task1.views import platform, cart, games, sign_up_by_html, django_sign_up
+from task1.views import platform, cart, games, sign_up_by_html, django_sign_up
 from task5.views import post_list
 
 
 # task1- task3
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-#     path('platform/', platform, name='platform'),
-#     path('games/', games, name='games'),
-#     path('cart/', cart, name='cart'),
-#     path('django_sign_up/', django_sign_up, name='func_view'),
-#     path('sign_up_by_html/', sign_up_by_html, name='func_view'),
-#
-# ]
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('platform/', platform, name='platform'),
+    path('games/', games, name='games'),
+    path('cart/', cart, name='cart'),
+    path('django_sign_up/', django_sign_up, name='func_view'),
+    path('sign_up_by_html/', sign_up_by_html, name='func_view'),
+
+]
 
 # task5
 urlpatterns = [
